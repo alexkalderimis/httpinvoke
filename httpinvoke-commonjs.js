@@ -918,8 +918,10 @@ noData = function() {
                 xhr.timeout = timeout;
             } else {
                 setTimeout(function() {
+                  if (cb) { // May have been deleted.
                     cb(new Error('download timeout'));
                     cb = null;
+                  }
                 }, timeout);
             }
         }
